@@ -6,6 +6,9 @@
 # Supports Bind/Chain
 #        var chainedProc : T = chain(m,fn)
 #  var chainedComp : T = chain(T, proc(int) : T)
+#
+#  TODO: State, IO and List Monad
+#  need to figure out why this won't typecheck
 type
     Monad[U]* = generic m
         var boxed : m = box(U)
