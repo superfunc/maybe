@@ -14,4 +14,5 @@ var m2 = Maybe[int](valid: false)
 var r = m1 >>= adder >>= adder >>= adder
 echo($r)
 
-print(r)
+var d : Dummy[int] = box(5)
+print(d)

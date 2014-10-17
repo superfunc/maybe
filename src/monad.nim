@@ -9,6 +9,15 @@
 #
 #  TODO: State, IO and List Monad
 #  need to figure out why this won't typecheck
+#  Crazy TODO: try to implement do notation as a macro
+#
 type
     Monad[U]* = generic m
-        var boxed : m = box(U)
+        var boxed : m = box[U](U)
+
+type 
+    Dummy*[T] = object
+        val*: T
+
+proc box*[T](something: T) : Dummy[T] =
+    Dummy[T](val: something)
