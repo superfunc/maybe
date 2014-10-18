@@ -5,8 +5,6 @@
 # created for this library
 
 import ../monad/maybe
-import ../monad/state
-import ../monad/reader
 import ../monad/writer
 
 # -------------------------------------------
