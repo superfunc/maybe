@@ -13,8 +13,6 @@ internet for the dozens of tutorials on the subject.
 A favorite of mine is the text, "Learn You a Haskell
 for Great Good".
 
-A short note
---
 Monads can be a weird, scary concept at first. But they
 are a very powerful pattern for structuring computation.
 Hopefully this library is of use to some, if only to learn
