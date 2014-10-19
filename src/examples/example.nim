@@ -25,10 +25,15 @@ var
 var 
     maybeResult1 = maybe1 >>= adder >>= adder >>= adder
     maybeResult2 = maybe2 >>= adder >>= adder >>= adder
+    
+    # We specify the type here as the call to box() could be for any
+    # soon-to-be monadic value
+    maybeResult3 = maybe.box(5) >>= adder >>= adder >>= adder
 
 # Test the resultant values of our computations
 echo($maybeResult1) # Outputs 'Just 40'
 echo($maybeResult2) # Outputs 'Nothing'
+echo($maybeResult3)
 
 # The writer monad
 proc adderWithLogging(x: int) : Writer[int] =
