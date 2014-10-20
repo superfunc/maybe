@@ -17,7 +17,7 @@ something new.
 
 
 ## Installation
-Should [nimble](http://github.com/nimrod-code/nimble)
+Should be installed via [nimble](http://github.com/nimrod-code/nimble)
 
 ``` nimble install monad ```
 
