@@ -39,6 +39,13 @@ proc `>>=`*[T,U](m: Maybe[U], p: proc(x:U): Maybe[T]) : Maybe[T] =
     else:
         result = Maybe[T](valid: false)
 
+
+proc nothing*[T]() : Maybe[T] =
+  Maybe[T](valid: false)
+
+proc just*[T](val: T) : Maybe[T] =
+  Maybe[T](valid: true, value: val)
+
 # -------------------------------------------------
 # ------- Monadic Operations ----------------------
 # -------------------------------------------------
