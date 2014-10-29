@@ -8,11 +8,20 @@
 # operation fmap(called map) which allows a procedure to be called
 # on a wrapped value
 
+import future
+
 type
     Maybe*[T] = object
         case valid*: bool
         of true:    value* : T
         of false:   nil
+
+
+# A hack suggested to me by Nim user, Jehan
+type NoType = distinct bool
+const None* = NoType(false)
+template `[]`*(x: NoType, T: typedesc): auto =
+  Maybe[T](valid: false)
 
 # -------------------------------------------------
 # ------- Operators -------------------------------
@@ -33,12 +42,11 @@ proc `$`*[T](m: Maybe[T]) : string =
 # Used for chaining monadic computations together.
 #
 # Analagous to bind(>>=) in Haskell.
-proc `>>=`*[T,U](m: Maybe[U], p: proc(x:U): Maybe[T]) : Maybe[T] =
+proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
     if ?m:
         result = p(m.value)
     else:
         result = Maybe[T](valid: false)
-
 
 proc nothing*[T]() : Maybe[T] =
   Maybe[T](valid: false)
@@ -67,13 +75,13 @@ proc box*[T](val: T) : Maybe[T] =
 # Used to chain monadic operations together.
 #
 # Analagous to bind(>>=) in Haskell
-proc chain*[T,U](m: Maybe[U], p: proc(x:U): Maybe[T]) : Maybe[T] {. procvar .} =
+proc chain*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] {. procvar .} =
     m >>= p
 
 # Used to map a function over a boxed value.
 #
 # Equivalent to (Functor f) => fmap :: (a->b) -> f a -> f b in Haskell.
-proc map*[T,U](m: Maybe[U], p: proc(x:U) : T) : Maybe[T] {. procvar .} =
+proc map*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
     if ?m:
         result = Maybe[T](valid: true, value: p(m.value))
     else:
