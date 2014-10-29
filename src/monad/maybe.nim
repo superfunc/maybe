@@ -19,7 +19,7 @@ type
 
 # A hack suggested to me by Nim user, Jehan
 type NoType = distinct bool
-const None* = NoType(false)
+const nothing* = NoType(false)
 template `[]`*(x: NoType, T: typedesc): auto =
   Maybe[T](valid: false)
 
@@ -48,8 +48,8 @@ proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
     else:
         result = Maybe[T](valid: false)
 
-proc nothing*[T]() : Maybe[T] =
-  Maybe[T](valid: false)
+#proc nothing*[T]() : Maybe[T] =
+#  Maybe[T](valid: false)
 
 proc just*[T](val: T) : Maybe[T] =
   Maybe[T](valid: true, value: val)
