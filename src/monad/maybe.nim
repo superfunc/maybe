@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Josh Filstrup
+# Copyright (c) 2015, Josh Filstrup
 # Licensed under BSD3(see license.md file for details)
 #
 # An implementation of the Maybe monad for Nim
