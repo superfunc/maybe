@@ -57,7 +57,7 @@ proc just*[T](val: T) : Maybe[T] =
 # Use unbox with caution, will cause a runtime exception
 # if trying to unbox a Nothing value since we don't have
 # proper pattern matching.
-proc unbox*[T](m: Maybe[T]) =
+proc unbox*[T](m: Maybe[T]) : T =
     m.value
 
 # Used to wrap a value in a Maybe
