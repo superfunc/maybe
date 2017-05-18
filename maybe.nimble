@@ -2,7 +2,7 @@
 name: "maybe"
 version: "0.2"
 author: "superfunc"
-description: "Some useful types that implement the monad interface."
+description: "A maybe type for nim."
 license: "BSD"
 
 srcDir: "src"
