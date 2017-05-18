@@ -5,7 +5,6 @@
 # created for this library
 
 import ../monad/maybe
-import ../monad/writer
 
 # -------------------------------------------
 # The maybe monad ---------------------------
@@ -34,39 +33,3 @@ var
 echo($maybeResult1) # Outputs 'Just 40'
 echo($maybeResult2) # Outputs 'Nothing'
 echo($maybeResult3)
-
-# The writer monad
-proc adderWithLogging(x: int) : Writer[int] =
-    Writer[int](value: x+x, log: "I just added " & $x & " to itself") 
-
-proc multWithLogging(x: int) : Writer[int] =
-    var 
-        lg = ""
-        val = x*x
-    
-    lg = lg & "Here are some important logging notes"
-    # some more work
-    lg = lg & "Now that the work is done, lets have a cola"
-    result = Writer[int](value: val, log: lg)
-
-# Initialize a writer
-var 
-    writer1 = Writer[int](value: 5, log: "")
-    writer2 = Writer[int](value: 5, log: "")
-
-# Create a result based on a sequence of operations
-var
-    writerResult1 = writer1 >>= adderWithLogging >>= adderWithLogging
-    writerResult2 = writer2 >>= multWithLogging >>= adderWithLogging >>= multWithLogging
-
-# Print out the writer, including the value
-echo($writerResult1)
-echo($writerResult2)
-
-# The reader monad
-
-
-# The state monad
-
-
-# The IO monad
