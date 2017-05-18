@@ -1,25 +1,19 @@
-monad
+maybe
 --
 
-A (hopefully) pragmatic implementation of some useful
-monads. Looking to define the generic typeclass for them
-in the near future.
-
-For an explanation of Monads, feel free to peruse the
-internet for the dozens of tutorials on the subject.
-A favorite of mine is the text, "Learn You a Haskell
-for Great Good".
+A (hopefully) pragmatic implementation of the maybe 
+monad, also known as optional in other languages. 
 
 Monads can be a weird, scary concept at first. But they
 are a very powerful pattern for structuring computation.
-Hopefully this library is of use to some, if only to learn
-something new.
-
+Maybe is a very concrete, simple example of the pattern
+that can help structure our code. For examples of this,
+see the examples/ folder.
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
 
-``` nimble install monad ```
+``` nimble install maybe ```
 
 ## License Info
 > Copyright (c) Josh Filstrup 2014
