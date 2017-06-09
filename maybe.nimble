@@ -1,6 +1,6 @@
 [Package]
 name: "maybe"
-version: "0.2"
+version: "1.0"
 author: "superfunc"
 description: "A maybe type for nim."
 license: "BSD"

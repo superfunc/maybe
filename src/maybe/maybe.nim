@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Josh Filstrup
+# Copyright (c) 2014-2017, Josh Filstrup
 # Licensed under BSD3(see license.md file for details)
 #
 # An implementation of the Maybe monad for Nim
@@ -16,67 +16,55 @@ type
         of true:    value* : T
         of false:   nil
 
-
-# -------------------------------------------------
-# ------- Operators -------------------------------
-# -------------------------------------------------
-
-# Shorthand operator for checking if a Maybe contains
-# a valid value.
-proc `?`*[T](m: Maybe[T]) : bool =
-    m.valid
-
-# Converts maybe value to a string.
-proc `$`*[T](m: Maybe[T]) : string =
-    if ?m:
-        result = "Just " & $m.value
-    else:
-        result = "Nothing"
-
-# Used for chaining monadic computations together.
-#
-# Analagous to bind(>>=) in Haskell.
-proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
-    if ?m:
-        result = p(m.value)
-    else:
-        result = Maybe[T](valid: false)
-
 proc nothing*[T]() : Maybe[T] =
   Maybe[T](valid: false)
 
 proc just*[T](val: T) : Maybe[T] =
   Maybe[T](valid: true, value: val)
 
+# Converts maybe value to a string.
+proc `$`*[T](m: Maybe[T]) : string =
+  if m.valid:
+    result = "Just " & $m.value
+  else:
+    result = "Nothing"
+
 # -------------------------------------------------
-# ------- Monadic Operations ----------------------
+# Functor operations
 # -------------------------------------------------
+
+# Used to map a function over a boxed value.
+#
+# Equivalent to (Functor f) => fmap :: (a->b) -> f a -> f b in Haskell.
+proc fmap*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
+  if m.valid:
+    result = Maybe[T](valid: true, value: p(m.value))
+  else:
+    result = Maybe[T](valid: false)
+
+# -------------------------------------------------
+# Monad Operations
+# -------------------------------------------------
+
+# Used for chaining monadic computations together.
+#
+# Analagous to bind(>>=) in Haskell.
+proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
+    if m.valid:
+        result = p(m.value)
+    else:
+        result = Maybe[T](valid: false)
+
+# Used to wrap a value in a Maybe
+#
+# Analagous to pure/return() in Haskell
+proc pure*[T](val: T) : Maybe[T] =
+  Maybe[T](valid: true, value: val)
 
 # Used to extract a value from a Maybe[T]
 #
 # Use unbox with caution, will cause a runtime exception
 # if trying to unbox a Nothing value since we don't have
 # proper pattern matching.
-proc unbox*[T](m: Maybe[T]) : T =
+proc unsafeUnwrap*[T](m: Maybe[T]) : T =
     m.value
-
-# Used to wrap a value in a Maybe
-#
-# Analagous to return() in Haskell
-proc box*[T](val: T) : Maybe[T] =
-    Maybe[T](valid: true, value: val)
-
-# Used to chain monadic operations together.
-#
-# Analagous to bind(>>=) in Haskell
-proc chain*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] {. procvar .} =
-    m >>= p
-
-# Used to map a function over a boxed value.
-#
-# Equivalent to (Functor f) => fmap :: (a->b) -> f a -> f b in Haskell.
-proc map*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
-    if ?m:
-        result = Maybe[T](valid: true, value: p(m.value))
-    else:
-        result = Maybe[T](valid: false)
