@@ -6,7 +6,8 @@ known as option or optional in other languages.
 
 The benefit provided by such a type is the ability to
 encapsulate otherwise tedious chain of if/else checks,
-for a concrete example of this, see [example](src/examples/example.nim).
+for a concrete example of this, see the following 
+[sample code](src/examples/example.nim).
 
 
 ## Installation
