@@ -1,14 +1,13 @@
 maybe
 --
 
-A (hopefully) pragmatic implementation of the maybe 
-monad, also known as optional in other languages. 
+An implementation of the maybe type, also 
+known as option or optional in other languages. 
 
-Monads can be a weird, scary concept at first. But they
-are a very powerful pattern for structuring computation.
-Maybe is a very concrete, simple example of the pattern
-that can help structure our code. For examples of this,
-see the examples/ folder.
+The benefit provided by such a type is the ability to
+encapsulate otherwise tedious chain of if/else checks,
+for a concrete example of this, see [example](src/examples/example.nim).
+
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
