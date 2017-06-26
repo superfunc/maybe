@@ -1,8 +1,4 @@
-sudo: enabled
-distro: trusty
-install:
-    - wget http://http.us.debian.org/debian/pool/main/n/nim/nim_0.16.0-1_amd64.deb
-    - wget http://http.us.debian.org/debian/pool/main/o/openssl1.0/libssl1.0.2_1.0.2k-1_amd64.deb
-    - sudo dpkg -i *_amd64.deb
+os: osx
 script:
-    - nimble build -y
+    - cd src/examples/ 
+    - nim c example.nim
