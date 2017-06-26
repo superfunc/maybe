@@ -1,4 +1,6 @@
 os: osx
+install:
+    - brew install nim
 script:
     - cd src/examples/ 
     - nim c example.nim
