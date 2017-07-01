@@ -4,3 +4,4 @@ install:
 script:
     - cd src/examples/ 
     - nim c example.nim
+    - ./example
