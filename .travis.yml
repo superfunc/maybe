@@ -5,3 +5,6 @@ script:
     - cd src/examples/ 
     - nim c example.nim
     - ./example
+    - cd ../tests/
+    - nim c basic.nim
+    - ./basic

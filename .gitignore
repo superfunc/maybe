@@ -1,2 +1,4 @@
 **nimcache**
 ./src/example/example
+./src/tests/test
+./src/tests/basic

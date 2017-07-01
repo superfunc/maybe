@@ -1,8 +1,5 @@
 # Copyright (c) 2014-2017, Josh Filstrup
 # Licensed under BSD3(see license.md file for details)
-#
-# A sample file to demonstrate usage of the four monads
-# created for this library
 
 import ../maybe/maybe
 

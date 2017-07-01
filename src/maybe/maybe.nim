@@ -67,4 +67,4 @@ proc pure*[T](val: T) : Maybe[T] =
 # if trying to unbox a Nothing value since we don't have
 # proper pattern matching.
 proc unsafeUnwrap*[T](m: Maybe[T]) : T =
-    m.value
+    return m.value
