@@ -50,7 +50,8 @@ runcmd "cd ../maybe/"
 # Clear out the timestamp lines
 runcmd "$NIMCC doc maybe.nim"
 runcmd "sed \"/Generated:/d\" maybe.html >> maybe_.html"
-runcmd "diff maybe_.html ../../doc/maybe.html"
+#runcmd "diff maybe_.html ../../doc/maybe.html"
+diff maybe_.html ../../doc/maybe.html
 echo '-------------------------------------'
 echo 'Docgen ran successfully!'
 echo '-------------------------------------'
