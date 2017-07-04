@@ -4,4 +4,4 @@ install:
     - brew install fish
 script:
     - fish
-    - fish build-verify.fish (which nim)
+    - build-verify.fish (which nim)
