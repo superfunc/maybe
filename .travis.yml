@@ -1,4 +1,7 @@
 os: osx
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
 install:
     - brew install nim
     - brew install fish
