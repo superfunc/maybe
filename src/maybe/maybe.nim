@@ -11,19 +11,25 @@
 import future
 
 type
-    Maybe*[T] = object
-        case valid*: bool
-        of true:    value* : T
-        of false:   nil
+  ## Maybe provides a type which encapsulates the concept
+  ## of null-ness in a safe way. This allows one to perform function
+  ## calls over the underlying object, without forgetting to check if
+  ## it is in a valid state.
+  Maybe*[T] = object
+      case valid*: bool
+      of true:    value* : T
+      of false:   nil
 
 proc nothing*[T]() : Maybe[T] =
+  ## Construct a maybe instance in the invalid state.
   Maybe[T](valid: false)
 
 proc just*[T](val: T) : Maybe[T] =
+  ## Construct a maybe instance in the valid state.
   Maybe[T](valid: true, value: val)
 
-# Converts maybe value to a string.
 proc `$`*[T](m: Maybe[T]) : string =
+  ## Convert a maybe instance to a string.
   if m.valid:
     result = "Just " & $m.value
   else:
@@ -33,10 +39,10 @@ proc `$`*[T](m: Maybe[T]) : string =
 # Functor operations
 # -------------------------------------------------
 
-# Used to map a function over a boxed value.
-#
-# Equivalent to (Functor f) => fmap :: (a->b) -> f a -> f b in Haskell.
 proc fmap*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
+  ## Used to map a function over a boxed value.
+  ##
+  ## Equivalent to (Functor f) => fmap :: (a->b) -> f a -> f b in Haskell.
   if m.valid:
     result = Maybe[T](valid: true, value: p(m.value))
   else:
@@ -46,25 +52,25 @@ proc fmap*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
 # Monad Operations
 # -------------------------------------------------
 
-# Used for chaining monadic computations together.
-#
-# Analagous to bind(>>=) in Haskell.
 proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
-    if m.valid:
-        result = p(m.value)
-    else:
-        result = Maybe[T](valid: false)
+  ## Used for chaining monadic computations together.
+  ##
+  ## Analagous to bind(>>=) in Haskell.
+  if m.valid:
+      result = p(m.value)
+  else:
+      result = Maybe[T](valid: false)
 
-# Used to wrap a value in a Maybe
-#
-# Analagous to pure/return() in Haskell
 proc pure*[T](val: T) : Maybe[T] =
+  ## Used to wrap a value in a Maybe instance
+  ##
+  ## Analagous to pure/return() in Haskell
   Maybe[T](valid: true, value: val)
 
-# Used to extract a value from a Maybe[T]
-#
-# Use unbox with caution, will cause a runtime exception
-# if trying to unbox a Nothing value since we don't have
-# proper pattern matching.
 proc unsafeUnwrap*[T](m: Maybe[T]) : T =
-    return m.value
+  ## Used to extract a value from a Maybe instance
+  ##
+  ## Use unbox with caution, will cause a runtime exception
+  ## if trying to unbox a Nothing value since we don't have
+  ## proper pattern matching.
+  return m.value

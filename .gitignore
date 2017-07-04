@@ -2,3 +2,4 @@
 ./src/example/example
 ./src/tests/test
 ./src/tests/basic
+build-log.txt

@@ -1,10 +1,7 @@
 os: osx
 install:
     - brew install nim
+    - brew install fish
 script:
-    - cd src/examples/ 
-    - nim c example.nim
-    - ./example
-    - cd ../tests/
-    - nim c basic.nim
-    - ./basic
+    - fish
+    - fish build-verify.fish (which nim)

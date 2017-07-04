@@ -10,6 +10,7 @@ encapsulate otherwise tedious chain of if/else checks,
 for a concrete example of this, see the following 
 [sample code](src/examples/example.nim).
 
+Module documentation is available [here](doc/maybe.html).
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
