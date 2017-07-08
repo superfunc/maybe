@@ -8,4 +8,4 @@ license: "BSD"
 srcDir: "src"
 
 [Deps]
-requires: "nimrod >= 0.9.6"
+requires: "nim >= 0.9.6"
