@@ -4,6 +4,6 @@ cache:
     - $HOME/Library/Caches/Homebrew
 install:
     - brew install nim
-    - brew install fish
 script:
-    - fish build-verify.fish `which nim`
+    - nim c buildverify.nim
+    - ./buildverify `which nim`

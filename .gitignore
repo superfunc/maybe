@@ -3,3 +3,4 @@
 ./src/tests/test
 ./src/tests/basic
 build-log.txt
+buildverify
