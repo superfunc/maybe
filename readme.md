@@ -12,10 +12,10 @@ for a concrete example of this, see the following
 
 Module documentation is available [here](doc/maybe.html).
 
-*Why Not Just use Option[T]?*: The standard option in Nim throws exceptions when invalid access is detected. This library
-prevents the need for that through 
-[variant types](https://nim-lang.org/docs/tut2.html#object-oriented-programming-object-variants). The only way
-to get an exception is through the unsafe API. I find this to be a stronger and simpler solution. 
+*Why Not Just use Option[T]?*: After reading more thoroughly through the Option[T] implementation, I actually
+think that they are mostly equivalent, so I would defer to it for most uses. When I wrote this library in 2014, 
+back when the language was called Nimrod, it didn't have an Option type available. I will leave this
+package up, and keep it maintained in case anyone uses it nonetheless. 
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
