@@ -13,7 +13,7 @@ for a concrete example of this, see the following
 Module documentation is available [here](doc/maybe.html).
 
 *Why Not Just use Option[T]?*: The standard option in Nim throws exceptions when invalid access is detected. This library
-prevents much of that through 
+prevents the need for that through 
 [variant types](https://nim-lang.org/docs/tut2.html#object-oriented-programming-object-variants). 
 I find this to be a stronger and simpler solution. 
 
