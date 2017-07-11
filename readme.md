@@ -12,10 +12,11 @@ for a concrete example of this, see the following
 
 Module documentation is available [here](doc/maybe.html).
 
-*Why Not Just use Option[T]?*: After reading more thoroughly through the Option[T] implementation, I actually
-think that they are mostly equivalent, so I would defer to it for most uses. When I wrote this library in 2014, 
-back when the language was called Nimrod, it didn't have an Option type available. I will leave this
-package up, and keep it maintained in case anyone uses it nonetheless. 
+*Why Not Just use Option[T]?*: For a moment, I thought this library had
+been made obsolete when option was added to Nim, but I just had an idea
+for a very useful improvement. I plan to add a macro which will make it
+impossible to misuse Maybe[T], giving it a key advantage over Option, which
+can throw exceptions if improperly used.
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
