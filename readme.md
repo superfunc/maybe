@@ -3,18 +3,36 @@ maybe
 [![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe)
 [Docs](doc/maybe.html).
 
-- An implementation of the maybe type, also 
-known as option or optional in other languages. 
-
-- The benefit provided by such a type is the ability to
-encapsulate otherwise tedious chain of if/else checks,
-for a concrete example of this, see the following 
-[sample code](src/examples/example.nim).
+- An implementation of the maybe type, also known as option or optional in other languages. 
 
 - **Why Not Just use Option[T]?**: In short, this library doesn't throw
 exceptions. It achieves this by using a macro to provide a safe pattern 
 in which a valid can't be invalidly accessed, see `maybeCase` in the
-docs for further details.
+docs for further details. For a small example:
+
+```nim
+var m = maybe.pure(4)
+maybeCase m:
+  just x:
+    var y = 3
+    echo $(x+y)
+  nothing:
+    echo "no value"
+
+var nada = maybe.nothing[int]()
+maybeCase nada:
+  just foo:
+    echo "hi this is a value we cant print" & $foo
+  nothing:
+    echo "nope no value, nice try with your invalid access"
+    
+```
+
+Prints out:
+```bash
+7
+nope no value, nice try with your invalid access
+```
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
