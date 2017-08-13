@@ -30,8 +30,8 @@ maybeCase nada:
 ## >> nope no value, nice try with your invalid access
 ```
 
-Note that, in the second case, trying to access our local binding
-`foo` outside of the `just` block will result in a compile time error.
+Note that, in the second case, trying to access our local binding(`x` and `foo`)
+outside of the `just` blocks will result in a compile time error.
 This is how we achieve safe access.
 
 ## Installation
