@@ -25,12 +25,9 @@ maybeCase nada:
   nothing:
     echo "nope no value, nice try with your invalid access"
     
-```
-
-Prints out:
-```bash
-7
-nope no value, nice try with your invalid access
+## This prints out:
+## >> 7
+## >> nope no value, nice try with your invalid access
 ```
 
 Note that, in the second case, trying to access our local binding
