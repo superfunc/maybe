@@ -17,7 +17,6 @@ proc testBasic() =
   b = maybe.fmap(b, add5)
   c = maybe.fmap(c, add5)
 
-  # Should probably consider not providing unsafeUnwrap.
   maybeCase a:
     just aInner:
       assert aInner == 10, "Value in 'a' should be 10"
