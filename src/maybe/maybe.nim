@@ -16,6 +16,15 @@ type
       of true:    value* : T
       of false:   nil
 
+proc `==`*[T](m1: Maybe[T], m2: Maybe[T]) : bool =
+  ## Equality for maybe objects
+  if (m1.valid == false and m2.valid == false):
+    return true
+  elif (m1.valid == true and m2.valid == true):
+    return m1.value == m2.value
+  else:
+    return false
+
 proc nothing*[T]() : Maybe[T] =
   ## Construct a maybe instance in the invalid state.
   Maybe[T](valid: false)
@@ -23,10 +32,6 @@ proc nothing*[T]() : Maybe[T] =
 proc just*[T](val: T) : Maybe[T] =
   ## Construct a maybe instance in the valid state.
   Maybe[T](valid: true, value: val)
-
-proc isValid*[T](m : Maybe[T]) : bool =
-  ## Tells whether or not the maybe contains a value.
-  return m.valid
 
 macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ## A macro which provides a safe access pattern to

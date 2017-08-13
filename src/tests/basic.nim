@@ -37,4 +37,20 @@ proc testBasic() =
     nothing:
       assert c.valid == false, "'c' should only be invalid in this clause"
 
+type Temp = enum
+  VHot, Hot, Med, Cold, VCold
+
+proc testCustomTypes() =
+  var 
+    a = maybe.pure(VHot)
+    b = maybe.pure(Cold)
+    c = maybe.nothing[Temp]()
+    d = maybe.pure(VHot)
+  
+  # Using maybes eq operator
+  assert a != b, "The inner values should not be equal"
+  assert a == d, "These inner values should be equal"
+  assert c != b, "The inner values should not be equal"
+
 testBasic()
+testCustomTypes()
