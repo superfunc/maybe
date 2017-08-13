@@ -1,11 +1,10 @@
 maybe 
 --
-[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe)
-[Docs](doc/maybe.html).
+[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || **[Docs](doc/maybe.html)**.
 
-- An implementation of the maybe type, also known as option or optional in other languages. 
+An implementation of a maybe type, also known as option(al) in other languages. 
 
-- **Why Not Just use Option[T]?**: In short, this library doesn't throw
+**Why Not Just use Option[T] from the standard library?**: In short, this library doesn't throw
 exceptions. It achieves this by using a macro to provide a safe pattern 
 in which a valid can't be invalidly accessed, see `maybeCase` in the
 docs for further details. For a small example:
@@ -33,6 +32,10 @@ Prints out:
 7
 nope no value, nice try with your invalid access
 ```
+
+Note that, in the second case, trying to access our local binding
+`foo` outside of the `just` block will result in a compile time error.
+This is how we achieve safe access.
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)
