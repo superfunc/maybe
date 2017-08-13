@@ -1,14 +1,10 @@
 # Copyright (c) 2014-2017, Josh Filstrup
 # Licensed under BSD3(see license.md file for details)
 #
-# An implementation of the Maybe monad for Nim
-# This implements the traditional operations, bind(called chain)
-# and return(called box) as well as a few useful operators for 
-# cleaning up usage of the monad. Also implemented the functor
-# operation fmap(called map) which allows a procedure to be called
-# on a wrapped value
+# An implementation of an exeptionless maybe type.
 
 import future
+import macros
 
 type
   ## Maybe provides a type which encapsulates the concept
@@ -28,16 +24,70 @@ proc just*[T](val: T) : Maybe[T] =
   ## Construct a maybe instance in the valid state.
   Maybe[T](valid: true, value: val)
 
+proc isValid*[T](m : Maybe[T]) : bool =
+  ## Tells whether or not the maybe contains a value.
+  return m.valid
+
+macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
+  ## A macro which provides a safe access pattern to
+  ## the maybe type. This avoids the need to have a get function
+  ## which throws an exception when its used improperly.
+  ##
+  ## This makes the following conversion
+  ##
+  ## maybeCase m:
+  ##    just x:
+  ##      expr1 using x
+  ##    nothing:
+  ##      expr2 that does not use x(trying to refer
+  ##      to x will not compile)
+  ##
+  ## converts to --->
+  ##
+  ## if m.isValid:
+  ##  var x = m.value
+  ##  eval expr using x
+  ## else:
+  ##  eval expr2
+  ##
+  assert body.len == 2
+  var justHead = body[0][0]
+  var nothingHead = body[1][0]
+
+  assert justHead.ident == !"just",
+    "\n\nFirst case must be of the form \njust ident: \n  body"
+  assert nothingHead.ident == !"nothing",
+    "\n\nSecond case must be of the form \nnothing: \n  body"
+
+  var unboxedIdent = body[0][1]
+  
+  result = newNimNode(nnkStmtList) 
+
+  var validExpr = newDotExpr(m, ident("valid"))
+  var valueExpr = newDotExpr(m, ident("value"))
+
+  var justClause = newNimNode(nnkStmtList)
+  justClause.add(newNimNode(nnkVarSection).add(
+    newIdentDefs(unboxedIdent, newEmptyNode(), valueExpr)))
+  for i in 2..body[0].len-1:
+    justClause.add(body[0][i])
+
+  var nothingClause = newNimNode(nnkStmtList)
+  for i in 1..body[1].len-1:
+    nothingClause.add(body[1][i])
+  
+  var ifExpr = newNimNode(nnkIfExpr)
+  ifExpr.add(newNimNode(nnkElifExpr).add(validExpr, justClause))
+  ifExpr.add(newNimNode(nnkElseExpr).add(nothingClause))
+
+  result = ifExpr
+
 proc `$`*[T](m: Maybe[T]) : string =
   ## Convert a maybe instance to a string.
   if m.valid:
     result = "Just " & $m.value
   else:
     result = "Nothing"
-
-# -------------------------------------------------
-# Functor operations
-# -------------------------------------------------
 
 proc fmap*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
   ## Used to map a function over a boxed value.
@@ -47,10 +97,6 @@ proc fmap*[T,U](m: Maybe[U], p: (U -> T) ) : Maybe[T] {. procvar .} =
     result = Maybe[T](valid: true, value: p(m.value))
   else:
     result = Maybe[T](valid: false)
-
-# -------------------------------------------------
-# Monad Operations
-# -------------------------------------------------
 
 proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
   ## Used for chaining monadic computations together.
@@ -66,11 +112,3 @@ proc pure*[T](val: T) : Maybe[T] =
   ##
   ## Analagous to pure/return() in Haskell
   Maybe[T](valid: true, value: val)
-
-proc unsafeUnwrap*[T](m: Maybe[T]) : T =
-  ## Used to extract a value from a Maybe instance
-  ##
-  ## Use unbox with caution, will cause a runtime exception
-  ## if trying to unbox a Nothing value since we don't have
-  ## proper pattern matching.
-  return m.value

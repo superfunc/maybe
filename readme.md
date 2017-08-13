@@ -12,11 +12,10 @@ for a concrete example of this, see the following
 
 Module documentation is available [here](doc/maybe.html).
 
-*Why Not Just use Option[T]?*: For a moment, I thought this library had
-been made obsolete when option was added to Nim, but I just had an idea
-for a very useful improvement. I plan to add a macro which will make it
-impossible to misuse Maybe[T], giving it a key advantage over Option, which
-can throw exceptions if improperly used.
+*Why Not Just use Option[T]?*: In short, this library doesn't throw
+exceptions. It achieves this by using a macro to provide a safe  
+pattern in which a valid can't be invalidly accessed, see `maybeCase` in the
+docs for further details.
 
 ## Installation
 Should be installed via [nimble](http://github.com/nimrod-code/nimble)

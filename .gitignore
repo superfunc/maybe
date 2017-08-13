@@ -2,5 +2,10 @@
 ./src/example/example
 ./src/tests/test
 ./src/tests/basic
-build-log.txt
 buildverify
+build_log.txt
+src/examples/example
+src/maybe/maybe
+src/maybe/maybe.html
+src/maybe/maybe_.html
+src/tests/basic

@@ -37,6 +37,7 @@ runCmd("which " & NIMCC)
 banner("Nim compiler found!")
 
 setCurrentDir("src/maybe")
+echo(getCurrentDir())
 runNimCC("maybe.nim")
 setCurrentDir("../examples/")
 runNimCC("example.nim")
@@ -55,7 +56,7 @@ banner("Tests ran successfully!")
 setCurrentDir("../maybe/")
 # Clear out the timestamp lines
 runCmd(NIMCC & " doc maybe.nim")
-runCmd("sed \"/Generated:/d\" maybe.html >> maybe_.html", false)
+runCmd("sed \"/Generated:/d\" maybe.html > maybe_.html", false)
 runCmd("diff maybe_.html ../../doc/maybe.html")
 banner("Docgen ran successfully!")
 

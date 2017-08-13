@@ -1234,6 +1234,8 @@ function main() {
     title="nothing*[T](): Maybe[T]"><wbr />nothing<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#just,T"
     title="just*[T](val: T): Maybe[T]"><wbr />just<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#isValid,Maybe[T]"
+    title="isValid*[T](m: Maybe[T]): bool"><wbr />is<wbr />Valid<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#$,Maybe[T]"
     title="`$`*[T](m: Maybe[T]): string">`<wbr />$`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#fmap,Maybe[U],"
@@ -1242,8 +1244,14 @@ function main() {
     title="`&gt;&gt;=`*[T, U](m: Maybe[U]; p: (U -&gt; Maybe[T])): Maybe[T]">`<wbr />&gt;&gt;=`<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#pure,T"
     title="pure*[T](val: T): Maybe[T]"><wbr />pure<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#unsafeUnwrap,Maybe[T]"
-    title="unsafeUnwrap*[T](m: Maybe[T]): T"><wbr />unsafe<wbr />Unwrap<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#16" id="66">Macros</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#maybeCase.m,Maybe[T],untyped"
+    title="maybeCase*[T](m: Maybe[T]; body: untyped): untyped"><wbr />maybe<wbr />Case<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1257,7 +1265,7 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="future.html">future</a>
+<a class="reference external" href="future.html">future</a>, <a class="reference external" href="macros.html">macros</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
@@ -1270,9 +1278,9 @@ function main() {
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L18"
+href="/tree/master/maybe.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1284,14 +1292,23 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Construct a maybe instance in the invalid state.
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L23"
+href="/tree/master/maybe.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="just"><a name="just,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">just</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 Construct a maybe instance in the valid state.
+&nbsp;&nbsp;<a
+href="/tree/master/maybe.nim#L23"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/maybe.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="isValid"><a name="isValid,Maybe[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isValid</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+Tells whether or not the maybe contains a value.
 &nbsp;&nbsp;<a
 href="/tree/master/maybe.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
@@ -1302,9 +1319,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Convert a maybe instance to a string.
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L31"
+href="/tree/master/maybe.nim#L85"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="fmap"><a name="fmap,Maybe[U],"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fmap</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">p</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">U</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">procvar</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1313,9 +1330,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Equivalent to (Functor f) =&gt; fmap :: (a-&gt;b) -&gt; f a -&gt; f b in Haskell.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L42"
+href="/tree/master/maybe.nim#L92"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id=">>="><a name=">>=,Maybe[U],"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">&gt;&gt;=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">p</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">U</span> <span class="Operator">-&gt;</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
@@ -1324,9 +1341,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Analagous to bind(&gt;&gt;=) in Haskell.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L55"
+href="/tree/master/maybe.nim#L101"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L101" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="pure"><a name="pure,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pure</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
@@ -1335,20 +1352,39 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Analagous to pure/return() in Haskell</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L64"
+href="/tree/master/maybe.nim#L110"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L110" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="unsafeUnwrap"><a name="unsafeUnwrap,Maybe[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">unsafeUnwrap</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+
+</dl></div>
+<div class="section" id="16">
+<h1><a class="toc-backref" href="#16">Macros</a></h1>
+<dl class="item">
+<dt id="maybeCase"><a name="maybeCase.m,Maybe[T],untyped"></a><pre><span class="Keyword">macro</span> <span class="Identifier">maybeCase</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
-<p>Used to extract a value from a Maybe instance</p>
-<p>Use unbox with caution, will cause a runtime exception if trying to unbox a Nothing value since we don't have proper pattern matching.</p>
+<p>A macro which provides a safe access pattern to the maybe type. This avoids the need to have a get function which throws an exception when its used improperly.</p>
+<p>This makes the following conversion</p>
+<dl class="docutils"><dt>maybeCase m:</dt>
+<dd><dl class="docutils"><dt>just x:</dt>
+<dd>expr1 using x</dd>
+<dt>nothing:</dt>
+<dd>expr2 that does not use x(trying to refer to x will not compile)</dd>
+</dl>
+</dd>
+</dl>
+<p>converts to ---&gt;</p>
+<dl class="docutils"><dt>if m.isValid:</dt>
+<dd>var x = m.value eval expr using x</dd>
+<dt>else:</dt>
+<dd>eval expr2</dd>
+</dl>
 
 &nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L70"
+href="/tree/master/maybe.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/maybe.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 

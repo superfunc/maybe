@@ -43,3 +43,21 @@ var
 # we can go along applying functions and obfuscate that detail
 echo($value1)
 echo($value2)
+
+var m = maybe.pure(4)
+
+# macro usage
+maybeCase m:
+  just x:
+    var y = 3
+    echo $(x+y)
+  nothing:
+    echo "no value"
+
+var nada = maybe.nothing[int]()
+maybeCase nada:
+  just foo:
+    echo "hi this is a value we cant print" & $foo
+  nothing:
+    echo "nope no value, nice try with your invalid access"
+

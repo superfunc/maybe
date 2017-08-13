@@ -18,8 +18,24 @@ proc testBasic() =
   c = maybe.fmap(c, add5)
 
   # Should probably consider not providing unsafeUnwrap.
-  assert maybe.unsafeUnwrap(a) == 10
-  assert maybe.unsafeUnwrap(b) == 8
-  assert c.valid == false
+  maybeCase a:
+    just aInner:
+      assert aInner == 10, "Value in 'a' should be 10"
+      assert a.valid, "'a' should only be valid in this clause"
+    nothing:
+      assert false, "This clause should be unreachable" 
+
+  maybeCase b:
+    just bInner:
+      assert bInner == 8, "Value in 'b' should be 8" 
+      assert b.valid, "'b' shoud only be valid in this clause"
+    nothing:
+      assert false, "This clause should be unreachable" 
+
+  maybeCase c:
+    just cInner:
+      assert false, "This clause should be unreachable" 
+    nothing:
+      assert c.valid == false, "'c' should only be invalid in this clause"
 
 testBasic()
