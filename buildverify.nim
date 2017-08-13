@@ -57,7 +57,7 @@ setCurrentDir("../maybe/")
 # Clear out the timestamp lines
 runCmd(NIMCC & " doc maybe.nim")
 runCmd("sed \"/Generated:/d\" maybe.html > maybe_.html", false)
-runCmd("diff maybe_.html ../../doc/maybe.html")
+runCmd("diff maybe_.html ../../index.html")
 banner("Docgen ran successfully!")
 
 # Cleanup, mostly useful for local runs
