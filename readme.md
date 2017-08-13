@@ -1,6 +1,6 @@
 maybe 
 --
-[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || **[Docs](doc/maybe.html)**.
+[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || **[Docs](https://superfunc.github.io/maybe/)**.
 
 An implementation of a maybe type, also known as option(al) in other languages. 
 
