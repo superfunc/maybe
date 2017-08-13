@@ -9,12 +9,12 @@ import ../maybe/maybe
 
 # A simple adding function to use with our monads
 proc adder(x: int) : Maybe[int] =
-    return Maybe[int](valid: true, value: x+x)
+    return maybe.pure(x+x)
 
 # Initialize two maybe values
 var 
-    maybe1 = Maybe[int](valid: true, value: 5)
-    maybe2 = Maybe[int](valid: false)
+    maybe1 = maybe.pure(5) 
+    maybe2 = maybe.nothing[int]() 
 
 # Create two results, of type Maybe[int]
 # based on a chain of computations

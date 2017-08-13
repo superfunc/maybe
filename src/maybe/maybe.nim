@@ -13,7 +13,7 @@ type
   ## it is in a valid state.
   Maybe*[T] = object
       case valid*: bool
-      of true:    value* : T
+      of true:    value : T
       of false:   nil
 
 proc `==`*[T](m1: Maybe[T], m2: Maybe[T]) : bool =
