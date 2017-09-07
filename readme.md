@@ -1,6 +1,9 @@
 maybe 
 --
-[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || [![nimble](https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png)](https://nimble.directory/pkg/maybe) || **[Docs](https://superfunc.github.io/maybe/)**.
+[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) 
+<a href="https://nimble.directory/pkg/maybe">
+<img src="https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png" width="80">
+</a> || **[Docs](https://superfunc.github.io/maybe/)**
 
 An implementation of a maybe type, also known as option(al) in other languages. 
 
