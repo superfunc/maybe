@@ -1,6 +1,6 @@
 maybe 
 --
-[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || **[Docs](https://superfunc.github.io/maybe/)**.
+[![Build Status](https://travis-ci.org/superfunc/maybe.svg?branch=master)](https://travis-ci.org/superfunc/maybe) || [![nimble](https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png)](https://nimble.directory/pkg/maybe) || **[Docs](https://superfunc.github.io/maybe/)**.
 
 An implementation of a maybe type, also known as option(al) in other languages. 
 
@@ -10,7 +10,7 @@ in which a valid can't be invalidly accessed, see `maybeCase` in the
 docs for further details. For a small example:
 
 ```nim
-var m = maybe.pure(4)
+var m = maybe.just(4)
 maybeCase m:
   just x:
     var y = 3
