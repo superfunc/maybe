@@ -2,6 +2,9 @@ os: osx
 cache:
   directories:
     - $HOME/Library/Caches/Homebrew
+before_install:
+    - brew update
+    - brew outdated nim || brew upgrade nim
 install:
     - brew install nim
 script:

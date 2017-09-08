@@ -1277,10 +1277,6 @@ function main() {
   </pre></dt>
 <dd>
 
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1291,37 +1287,21 @@ class="link-seesrc" target="_blank">Source</a>
 <dt id="=="><a name="==,Maybe[T],Maybe[T]"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">==</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m1</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">m2</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 Equality for maybe objects
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="nothing"><a name="nothing,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">nothing</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 Construct a maybe instance in the invalid state.
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L28"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="just"><a name="just,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">just</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
 <dd>
 Construct a maybe instance in the valid state.
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L32"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="$"><a name="$,Maybe[T]"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">$</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
 Convert a maybe instance to a string.
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L90"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L90" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="fmap"><a name="fmap,Maybe[U],"></a><pre><span class="Keyword">proc</span> <span class="Identifier">fmap</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">p</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">U</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">procvar</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1329,10 +1309,6 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Used to map a function over a boxed value.</p>
 <p>Equivalent to (Functor f) =&gt; fmap :: (a-&gt;b) -&gt; f a -&gt; f b in Haskell.</p>
 
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L97"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L97" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id=">>="><a name=">>=,Maybe[U],"></a><pre><span class="Keyword">proc</span> <span class="Other">`</span><span class="Operator">&gt;&gt;=</span><span class="Other">`</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">p</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">U</span> <span class="Operator">-&gt;</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
@@ -1340,10 +1316,6 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Used for chaining monadic computations together.</p>
 <p>Analagous to bind(&gt;&gt;=) in Haskell.</p>
 
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L106"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L106" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="pure"><a name="pure,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pure</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
@@ -1351,10 +1323,6 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Used to wrap a value in a Maybe instance</p>
 <p>Analagous to pure/return() in Haskell</p>
 
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L115"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L115" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1381,10 +1349,6 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>eval expr2</dd>
 </dl>
 
-&nbsp;&nbsp;<a
-href="/tree/master/maybe.nim#L36"
-class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/maybe.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
