@@ -111,9 +111,3 @@ proc `>>=`*[T,U](m: Maybe[U], p: (U -> Maybe[T]) ) : Maybe[T] =
       result = p(m.value)
   else:
       result = Maybe[T](valid: false)
-
-proc pure*[T](val: T) : Maybe[T] =
-  ## Used to wrap a value in a Maybe instance
-  ##
-  ## Analagous to pure/return() in Haskell
-  Maybe[T](valid: true, value: val)

@@ -9,11 +9,11 @@ import ../maybe/maybe
 
 # A simple adding function to use with our monads
 proc adder(x: int) : Maybe[int] =
-    return maybe.pure(x+x)
+    return maybe.just(x+x)
 
 # Initialize two maybe values
 var 
-    maybe1 = maybe.pure(5) 
+    maybe1 = maybe.just(5) 
     maybe2 = maybe.nothing[int]() 
 
 # Create two results, of type Maybe[int]
@@ -24,7 +24,7 @@ var
     
     # We specify the type here as the call to box() could be for any
     # soon-to-be monadic value
-    maybeResult3 = maybe.pure(5) >>= adder >>= adder >>= adder
+    maybeResult3 = maybe.just(5) >>= adder >>= adder >>= adder
 
 # Test the resultant values of our computations
 echo($maybeResult1) # Outputs 'Just 40'
@@ -36,7 +36,7 @@ proc add5(x : int) : int =
   x + 5
 
 var 
-    value1 = maybe.fmap(maybe.pure(10), add5)
+    value1 = maybe.fmap(maybe.just(10), add5)
     value2 = maybe.fmap(maybe.nothing[int](), add5)
     
 # Here we see that maybe handles the optional-ness for us, so
@@ -44,7 +44,7 @@ var
 echo($value1)
 echo($value2)
 
-var m = maybe.pure(4)
+var m = maybe.just(4)
 
 # macro usage
 maybeCase m:

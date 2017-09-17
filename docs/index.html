@@ -1242,8 +1242,6 @@ function main() {
     title="fmap*[T, U](m: Maybe[U]; p: (U -&gt; T)): Maybe[T]"><wbr />fmap<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#>>=,Maybe[U],"
     title="`&gt;&gt;=`*[T, U](m: Maybe[U]; p: (U -&gt; Maybe[T])): Maybe[T]">`<wbr />&gt;&gt;=`<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#pure,T"
-    title="pure*[T](val: T): Maybe[T]"><wbr />pure<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1315,13 +1313,6 @@ Convert a maybe instance to a string.
 <dd>
 <p>Used for chaining monadic computations together.</p>
 <p>Analagous to bind(&gt;&gt;=) in Haskell.</p>
-
-
-</dd>
-<dt id="pure"><a name="pure,T"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pure</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Maybe</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
-<dd>
-<p>Used to wrap a value in a Maybe instance</p>
-<p>Analagous to pure/return() in Haskell</p>
 
 
 </dd>

@@ -9,8 +9,8 @@ proc add5(x : int) : int =
 
 proc testBasic() =
   var 
-    a = maybe.pure(5)
-    b = maybe.pure(3)
+    a = maybe.just(5)
+    b = maybe.just(3)
     c = maybe.nothing[int]()
     
   a = maybe.fmap(a, add5) 
@@ -42,10 +42,10 @@ type Temp = enum
 
 proc testCustomTypes() =
   var 
-    a = maybe.pure(VHot)
-    b = maybe.pure(Cold)
+    a = maybe.just(VHot)
+    b = maybe.just(Cold)
     c = maybe.nothing[Temp]()
-    d = maybe.pure(VHot)
+    d = maybe.just(VHot)
   
   # Using maybes eq operator
   assert a != b, "The inner values should not be equal"
