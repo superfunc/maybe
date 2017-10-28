@@ -2,6 +2,7 @@
 ./src/example/example
 ./src/tests/test
 ./src/tests/basic
+.*.*.sw*
 buildverify
 build_log.txt
 src/examples/example
