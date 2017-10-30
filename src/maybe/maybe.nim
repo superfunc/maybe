@@ -101,7 +101,6 @@ macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ifExpr.add(newNimNode(nnkElseExpr).add(nothingClause))
 
   result = ifExpr
-  echo treeRepr(result)
 
 proc `$`*[T](m: Maybe[T]) : string =
   ## Convert a maybe instance to a string.

@@ -21,6 +21,8 @@ proc testBasic() =
     just aInner:
       assert aInner == 10, "Value in 'a' should be 10"
       assert a.valid, "'a' should only be valid in this clause"
+      aInner = 15
+
     nothing:
       assert false, "This clause should be unreachable" 
 
@@ -36,6 +38,8 @@ proc testBasic() =
       assert false, "This clause should be unreachable" 
     nothing:
       assert c.valid == false, "'c' should only be invalid in this clause"
+  
+  assert $a == "Just 15"
 
 type Temp = enum
   VHot, Hot, Med, Cold, VCold
