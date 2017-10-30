@@ -33,6 +33,19 @@ proc just*[T](val: T) : Maybe[T] =
   ## Construct a maybe instance in the valid state.
   Maybe[T](valid: true, value: val)
 
+proc replaceIdents(before: NimNode, after: NimNode, ast: var NimNode) =
+  for i in 0 .. <ast.len:
+    var child = ast[i]
+    case child.kind:
+    of nnkIdent:
+      if child == before:
+        copyChildrenTo(child, after)
+        ast[i] = after
+    else:
+      discard
+  
+    replaceIdents(before, after, child)
+
 macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ## A macro which provides a safe access pattern to
   ## the maybe type. This avoids the need to have a get function
@@ -50,8 +63,7 @@ macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ## converts to --->
   ##
   ## if m.isValid:
-  ##  var x = m.value
-  ##  eval expr using x
+  ##  eval expr using x where x is replaced with m.value
   ## else:
   ##  eval expr2
   ##
@@ -72,10 +84,13 @@ macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   var valueExpr = newDotExpr(m, ident("value"))
 
   var justClause = newNimNode(nnkStmtList)
-  justClause.add(newNimNode(nnkVarSection).add(
-    newIdentDefs(unboxedIdent, newEmptyNode(), valueExpr)))
-  for i in 2..body[0].len-1:
-    justClause.add(body[0][i])
+  for i in 2 .. <body[0].len:
+    # We must go through each expression in the just clause
+    # and replace our identifier named in the declaration of 
+    # the macro (the 'x' in just x:) with m.value
+    var current = body[0][i]
+    replaceIdents(unboxedIdent, valueExpr, current)
+    justClause.add(current)
 
   var nothingClause = newNimNode(nnkStmtList)
   for i in 1..body[1].len-1:
@@ -86,6 +101,7 @@ macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ifExpr.add(newNimNode(nnkElseExpr).add(nothingClause))
 
   result = ifExpr
+  echo treeRepr(result)
 
 proc `$`*[T](m: Maybe[T]) : string =
   ## Convert a maybe instance to a string.
