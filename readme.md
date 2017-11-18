@@ -8,7 +8,7 @@ An implementation of a maybe type, also known as option(al) in other languages.
 
 **Why Not Just use Option[T] from the standard library?**: In short, this library doesn't throw
 exceptions. It achieves this by using a macro to provide a safe pattern 
-in which a valid can't be invalidly accessed, see `maybeCase` in the
+in which a maybe object can't be invalidly accessed, see `maybeCase` in the
 docs for further details. For a small example:
 
 ```nim
