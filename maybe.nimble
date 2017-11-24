@@ -1,6 +1,6 @@
 # Package
 
-version = "2.0"
+version = "2.2"
 author = "superfunc"
 description = "A maybe type for nim."
 license = "BSD"
