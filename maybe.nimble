@@ -1,5 +1,5 @@
 # Package
-name = "maybe"
+
 version = "2.0"
 author = "superfunc"
 description = "A maybe type for nim."
@@ -8,4 +8,5 @@ srcDir = "src"
 skipDirs = @["examples"]
 
 # Deps
-requires = "nim >= 0.9.6"
+
+requires "nim >= 0.9.6"
