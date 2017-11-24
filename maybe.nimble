@@ -1,11 +1,11 @@
-[Package]
-name: "maybe"
-version: "2.0"
-author: "superfunc"
-description: "A maybe type for nim."
-license: "BSD"
+# Package
+name = "maybe"
+version = "2.0"
+author = "superfunc"
+description = "A maybe type for nim."
+license = "BSD"
+srcDir = "src"
 skipDirs = @["examples"]
-srcDir: "src"
 
-[Deps]
-requires: "nim >= 0.9.6"
+# Deps
+requires = "nim >= 0.9.6"
