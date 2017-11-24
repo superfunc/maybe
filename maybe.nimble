@@ -5,7 +5,7 @@ author = "superfunc"
 description = "A maybe type for nim."
 license = "BSD"
 srcDir = "src"
-skipDirs = @["examples"]
+skipDirs = @["examples", "tests"]
 
 # Deps
 
