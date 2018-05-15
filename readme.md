@@ -42,5 +42,5 @@ Should be installed via [nimble](http://github.com/nimrod-code/nimble)
 ``` nimble install maybe ```
 
 ## License Info
-> Copyright (c) Josh Filstrup 2014-2017
+> Copyright (c) Josh Filstrup 2014-2018
 Licensed under BSD3 (see license.md for details)
