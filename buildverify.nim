@@ -55,17 +55,17 @@ banner("Tests ran successfully!")
 
 setCurrentDir("../maybe/")
 # Clear out the timestamp lines
-runCmd(NIMCC & " doc maybe.nim")
-runCmd("sed \"/Generated:/d\" maybe.html > maybe_.html", false)
-runCmd("diff maybe_.html ../../docs/index.html")
-banner("Docgen ran successfully!")
-
-# Cleanup, mostly useful for local runs
-setCurrentDir("../../")
-runCmd("rm ./src/tests/basic")
-runCmd("rm ./src/examples/example")
-runCmd("rm ./src/maybe/maybe")
-runCmd("rm ./src/maybe/maybe.html")
-runCmd("rm ./src/maybe/maybe_.html")
-banner("Cleanup ran successfully!")
+#runCmd(NIMCC & " doc maybe.nim")
+#runCmd("sed \"/Generated:/d\" maybe.html > maybe_.html", false)
+#runCmd("diff maybe_.html ../../docs/index.html")
+#banner("Docgen ran successfully!")
+#
+## Cleanup, mostly useful for local runs
+#setCurrentDir("../../")
+#runCmd("rm ./src/tests/basic")
+#runCmd("rm ./src/examples/example")
+#runCmd("rm ./src/maybe/maybe")
+#runCmd("rm ./src/maybe/maybe.html")
+#runCmd("rm ./src/maybe/maybe_.html")
+#banner("Cleanup ran successfully!")
 
