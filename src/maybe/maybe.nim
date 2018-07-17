@@ -33,19 +33,6 @@ proc just*[T](val: T) : Maybe[T] =
   ## Construct a maybe instance in the valid state.
   Maybe[T](valid: true, value: val)
 
-proc replaceIdents(before: NimNode, after: NimNode, ast: var NimNode) =
-  for i in 0 .. <ast.len:
-    var child = ast[i]
-    case child.kind:
-    of nnkIdent:
-      if child == before:
-        copyChildrenTo(child, after)
-        ast[i] = after
-    else:
-      discard
-  
-    replaceIdents(before, after, child)
-
 macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   ## A macro which provides a safe access pattern to
   ## the maybe type. This avoids the need to have a get function
@@ -71,36 +58,41 @@ macro maybeCase*[T](m : Maybe[T], body : untyped) : untyped =
   var justHead = body[0][0]
   var nothingHead = body[1][0]
 
-  assert justHead.ident == !"just",
+  assert $justHead == "just",
     "\n\nFirst case must be of the form \njust ident: \n  body"
-  assert nothingHead.ident == !"nothing",
+  assert $nothingHead == "nothing",
     "\n\nSecond case must be of the form \nnothing: \n  body"
 
-  var unboxedIdent = body[0][1]
-  
-  result = newNimNode(nnkStmtList) 
+  let
+    mVal = genSym(nskLet)
+    validExpr = newDotExpr(mVal, ident("valid"))
+    valueExpr = newDotExpr(mVal, ident("value"))
+    justClause = nnkStmtList.newTree(
+      nnkLetSection.newTree(
+        nnkIdentDefs.newTree(
+          body[0][1],
+          newEmptyNode(),
+          valueExpr
+        )
+      ),
+      body[0][2]
+    )
+    nothingClause = body[1][1]
 
-  var validExpr = newDotExpr(m, ident("valid"))
-  var valueExpr = newDotExpr(m, ident("value"))
-
-  var justClause = newNimNode(nnkStmtList)
-  for i in 2 .. <body[0].len:
-    # We must go through each expression in the just clause
-    # and replace our identifier named in the declaration of 
-    # the macro (the 'x' in just x:) with m.value
-    var current = body[0][i]
-    replaceIdents(unboxedIdent, valueExpr, current)
-    justClause.add(current)
-
-  var nothingClause = newNimNode(nnkStmtList)
-  for i in 1..body[1].len-1:
-    nothingClause.add(body[1][i])
-  
   var ifExpr = newNimNode(nnkIfExpr)
   ifExpr.add(newNimNode(nnkElifExpr).add(validExpr, justClause))
   ifExpr.add(newNimNode(nnkElseExpr).add(nothingClause))
 
-  result = ifExpr
+  result = nnkStmtList.newTree(
+    nnkLetSection.newTree(
+      nnkIdentDefs.newTree(
+        mVal,
+        newEmptyNode(),
+        m
+      )
+    ),
+    ifExpr
+  )
 
 proc `$`*[T](m: Maybe[T]) : string =
   ## Convert a maybe instance to a string.
