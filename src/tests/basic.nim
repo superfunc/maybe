@@ -21,7 +21,7 @@ proc testBasic() =
     just aInner:
       assert aInner == 10, "Value in 'a' should be 10"
       assert a.valid, "'a' should only be valid in this clause"
-      aInner = 15
+      a = maybe.just(15)
 
     nothing:
       assert false, "This clause should be unreachable" 
