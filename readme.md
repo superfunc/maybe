@@ -4,10 +4,12 @@ maybe
 <img src="https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png" width="80">
 </a> || **[Docs](https://superfunc.github.io/maybe/)**
 
-> Note: There is a [chance](https://github.com/nim-lang/Nim/pull/8358) 
+> Note 1: ~There is a [chance](https://github.com/nim-lang/Nim/pull/8358) 
 > the main macro(maybeCase) may get merged into the standard library.
 > If this happens I'll recommend people use that, but will accept bugfixes 
-> and reports on this library going forward, just no new features.
+> and reports on this library going forward, just no new features.~
+
+> Note 2: The PR was not accepted, so maybe lives on!
 
 An implementation of a maybe type, also known as option(al) in other languages. 
 
