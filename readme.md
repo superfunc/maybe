@@ -1,8 +1,8 @@
 maybe 
 --
-<a href="https://nimble.directory/pkg/maybe">
-<img src="https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble.png" width="80">
-</a> || **[Docs](https://superfunc.github.io/maybe/)**
+
+- Package -> https://nimble.directory/pkg/maybe
+- Docs -> https://superfunc.github.io/maybe
 
 > Note 1: ~There is a [chance](https://github.com/nim-lang/Nim/pull/8358) 
 > the main macro(maybeCase) may get merged into the standard library.
