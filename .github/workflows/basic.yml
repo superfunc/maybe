@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    install:
+      brew install nim
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: nim c buildverify.nim
+    - name: Test
+      run: ./buildverify
