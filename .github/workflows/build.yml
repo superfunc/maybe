@@ -12,5 +12,3 @@ jobs:
       run: brew install nim
     - name: Build
       run: nim c buildverify.nim
-    - name: Test
-      run: ./buildverify
