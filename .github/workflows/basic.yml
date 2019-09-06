@@ -6,10 +6,10 @@ jobs:
   build:
 
     runs-on: macOS-latest
-    install:
-      brew install nim
     steps:
     - uses: actions/checkout@v1
+    - name: Install
+      run: brew install nim
     - name: Build
       run: nim c buildverify.nim
     - name: Test
