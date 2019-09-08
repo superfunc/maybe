@@ -1,8 +1,10 @@
 maybe 
 --
+![Build status badge](https://github.com/superfunc/maybe/workflows/CI/badge.svg)
 
-- Package -> https://nimble.directory/pkg/maybe
-- Docs -> https://superfunc.github.io/maybe
+**Nimble Package:** https://nimble.directory/pkg/maybe
+
+**Docs:** https://superfunc.github.io/maybe
 
 > Note 1: ~There is a [chance](https://github.com/nim-lang/Nim/pull/8358) 
 > the main macro(maybeCase) may get merged into the standard library.
